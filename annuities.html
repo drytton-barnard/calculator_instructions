@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculator Help Center - Annuities</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <script defer src="script.js"></script>
+</head>
+
+<body>
+  <div id="background-image"></div>
+  <div id="overlay"></div>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Help Center</a>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu" type="button">
+        <span class="hamburger"></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="interest-converter.html" class="nav-link">Interest Converter</a></li>
+        <li><a href="date-converter.html" class="nav-link">Date Converter</a></li>
+        <li><a href="single-investment.html" class="nav-link">Single Investment</a></li>
+        <li><a href="annuities.html" class="nav-link active">Annuities</a></li>
+        <li><a href="increasing-annuity.html" class="nav-link">Increasing Annuity</a></li>
+        <li><a href="loan-calculator.html" class="nav-link">Loan Calculator</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="glass-container">
+    <header>
+      <h1>Annuities Calculator</h1>
+      <p>Calculate annuities with detailed guides and learn how to project future payments efficiently.</p>
+    </header>
+
+    <main>
+      <div class="button-group" style="margin: 2rem 0;">
+        <a href="media/annuities.xlsx" download class="btn">Download Annuities Excel File</a>
+        <a href="media/annuities-guide.pptx" download class="btn">Download Annuities Guide (PPT)</a>
+      </div>
+
+      <div id="uploadSection" class="upload-section" aria-label="Private media upload section">
+        <input type="file" id="uploadImage" accept="image/*" aria-label="Upload an image file" />
+        <input type="file" id="uploadVideo" accept="video/*" aria-label="Upload a video file" />
+        <button class="btn" onclick="handleUpload()">Upload Media</button>
+      </div>
+
+      <section class="gallery" id="mediaGallery" aria-live="polite" aria-atomic="true">
+        <!-- Uploaded media previews -->
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Calculator Help Center - 55213790</p>
+    </footer>
+  </div>
+</body>
+</html>
