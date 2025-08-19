@@ -185,6 +185,12 @@ function handleUpload() {
     link.target = "_blank"; // fallback
     link.appendChild(video);
 
+    // lightbox click
+    img.onclick = (e) => {
+      e.preventDefault();
+      openLightbox(img);
+    };
+    
     video.onclick = (e) => {
       e.preventDefault();
       openLightbox(video);
