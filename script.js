@@ -121,3 +121,85 @@ document.addEventListener("keydown", (e) => {
 });
 
 document.addEventListener("contextmenu", disableContextMenu);
+
+/* ================================
+   Lightbox logic for gallery media
+   ================================ */
+function openLightbox(content) {
+  const lightbox = document.getElementById("lightbox");
+  const lightboxContent = document.getElementById("lightboxContent");
+  lightboxContent.innerHTML = ""; // clear previous content
+  lightboxContent.appendChild(content.cloneNode(true)); // clone image/video
+  lightbox.style.display = "flex";
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").style.display = "none";
+}
+
+/* Override handleUpload to include clickable lightbox + fallback links */
+function handleUpload() {
+  const gallery = document.getElementById("mediaGallery");
+  const imageFile = document.getElementById("uploadImage").files[0];
+  const videoFile = document.getElementById("uploadVideo").files[0];
+
+  if (!imageFile && !videoFile) {
+    alert("Please select an image or video file to upload.");
+    return;
+  }
+
+  if (imageFile) {
+    const img = document.createElement("img");
+    img.src = URL.createObjectURL(imageFile);
+    img.alt = imageFile.name;
+
+    // clickable wrapper
+    const link = document.createElement("a");
+    link.href = img.src;
+    link.target = "_blank"; // fallback
+    link.appendChild(img);
+
+    img.onclick = (e) => {
+      e.preventDefault();
+      openLightbox(img);
+    };
+
+    const caption = document.createElement("p");
+    caption.textContent = imageFile.name;
+
+    const container = document.createElement("div");
+    container.className = "gallery-item";
+    container.appendChild(link);
+    container.appendChild(caption);
+    gallery.appendChild(container);
+  }
+
+  if (videoFile) {
+    const video = document.createElement("video");
+    video.src = URL.createObjectURL(videoFile);
+    video.controls = true;
+
+    // clickable wrapper
+    const link = document.createElement("a");
+    link.href = video.src;
+    link.target = "_blank"; // fallback
+    link.appendChild(video);
+
+    video.onclick = (e) => {
+      e.preventDefault();
+      openLightbox(video);
+    };
+
+    const caption = document.createElement("p");
+    caption.textContent = videoFile.name;
+
+    const container = document.createElement("div");
+    container.className = "gallery-item";
+    container.appendChild(link);
+    container.appendChild(caption);
+    gallery.appendChild(container);
+  }
+
+  document.getElementById("uploadImage").value = "";
+  document.getElementById("uploadVideo").value = "";
+}
