@@ -350,3 +350,11 @@ input:focus {
 .upload-section::-webkit-scrollbar-thumb:hover {
   background: rgba(42, 67, 101, 0.7);
 }
+
+/* Center all header text on the homepage */
+.glass-container header {
+    text-align: center; /* horizontal centering */
+    display: flex;
+    flex-direction: column; /* stack heading and paragraph vertically */
+    align-items: center;    /* horizontally center flex items */
+}
