@@ -425,3 +425,31 @@ input:focus {
   border-radius: 12px;
   min-width: 200px;      /* optional: prevent items from shrinking too much */
 }
+
+/* ================== Gallery 2-items-per-row layout ================== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* always 2 items per row */
+  gap: 20px;                             /* spacing between items */
+}
+
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.gallery-item img,
+.gallery-item iframe,
+.gallery-item video {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
