@@ -394,16 +394,11 @@ input:focus {
   user-select: none;
 }
 
-/* Fix for iframes inside gallery */
+/* ================== Responsive Iframes in Gallery ================== */
 .gallery-item iframe {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.gallery-item iframe:hover {
-  transform: scale(1.05);
-  cursor: pointer;
+  width: 100%;          /* full width of the gallery item */
+  height: auto;         /* height adjusts automatically */
+  aspect-ratio: 16/9;   /* maintain 16:9 ratio */
+  border-radius: 8px;   /* match other media */
+  object-fit: cover;    /* crop if necessary, keeps it neat */
 }
