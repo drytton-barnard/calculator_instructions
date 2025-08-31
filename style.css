@@ -412,3 +412,37 @@ input:focus {
   text-align: center;
   margin-top: 0.5rem;
 }
+
+/* ================== Fixed Responsive Gallery ================== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* responsive columns */
+  gap: 1rem; /* spacing between items */
+  padding: 1rem;
+}
+
+.gallery-item {
+  display: flex;
+  flex-direction: column; /* stack content vertically */
+  align-items: center;    /* center images/videos */
+  background: #f5f5f5;    /* optional styling */
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 0.5rem;
+}
+
+.gallery-item img,
+.gallery-item video,
+.gallery-item iframe {
+  width: 100%;            /* fill the gallery item width */
+  aspect-ratio: 16/9;     /* maintain proper ratio */
+  object-fit: cover;      /* fill nicely without stretching */
+  display: block;
+  border-radius: 8px;
+}
+
+.gallery-item p {
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
