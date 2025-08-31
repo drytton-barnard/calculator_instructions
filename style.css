@@ -402,3 +402,26 @@ input:focus {
   border-radius: 8px;   /* match other media */
   object-fit: cover;    /* crop if necessary, keeps it neat */
 }
+
+/* ================== Fix gallery layout for videos/iframes ================== */
+.gallery-item iframe,
+.gallery-item video {
+  width: 100%;           /* fill the gallery item width */
+  max-width: 100%;       /* prevent overflow */
+  aspect-ratio: 16/9;    /* consistent video ratio */
+  border-radius: 8px;    /* match image styling */
+  object-fit: cover;     /* keep content nicely scaled */
+  display: block;        /* remove inline spacing issues */
+  margin: 0 auto;        /* center in gallery block */
+}
+
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: rgba(255,255,255,0.1);
+  padding: 10px;
+  border-radius: 12px;
+  min-width: 200px;      /* optional: prevent items from shrinking too much */
+}
