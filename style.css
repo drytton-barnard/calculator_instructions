@@ -245,8 +245,8 @@ body {
 /* ================== GALLERY ================== */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 1.6rem;
+  grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+  gap: 20px;
   width: 100%;
 }
 
@@ -254,23 +254,22 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(255,255,255,0.1);
+  justify-content: flex-start;
+  background: rgba(255, 255, 255, 0.1);
   padding: 10px;
   border-radius: 12px;
+  width: 100%;
 }
 
 .gallery-item img,
-.gallery-item video {
-  max-width: 100%;
-  border-radius: 8px;
+.gallery-item video,
+.gallery-item iframe {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
   object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.gallery-item img:hover,
-.gallery-item video:hover {
-  transform: scale(1.05);
-  cursor: pointer;
+  border-radius: 8px;
+  display: block;
 }
 
 .gallery-item p {
@@ -279,6 +278,35 @@ body {
   color: #2a4365;
   text-align: center;
 }
+
+/* ================== RESPONSIVE ================== */
+@media (max-width: 1024px) {
+  .glass-container { padding: 2.5rem 2rem; margin: 5rem auto 2rem; }
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.25rem; }
+}
+
+@media (max-width: 768px) {
+  .glass-container { margin: 4rem 1rem 2rem; padding: 2rem 1.5rem; }
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 1.9rem; }
+
+  .gallery {
+    grid-template-columns: 1fr; /* 1 item per row on small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .glass-container { margin: 3rem 0.5rem 2rem; padding: 1.5rem 1rem; }
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+}
+
+/* ================== TYPOGRAPHY ================== */
+h1 { font-size: 3.75rem; line-height: 1.1; font-weight: 700; }
+h2 { font-size: 2.75rem; font-weight: 600; }
+h3 { font-size: 1.8rem; font-weight: 500; }
+p { font-size: 1.1rem; }
 
 /* ================== FOOTER ================== */
 footer {
@@ -292,30 +320,37 @@ footer {
   margin-right: auto;
 }
 
-/* ================== TYPOGRAPHY ================== */
-h1 { font-size: 3.75rem; line-height: 1.1; font-weight: 700; }
-h2 { font-size: 2.75rem; font-weight: 600; }
-h3 { font-size: 1.8rem; font-weight: 500; }
-p { font-size: 1.1rem; }
-
-/* ================== RESPONSIVE ================== */
-@media (max-width: 1024px) {
-  .glass-container { padding: 2.5rem 2rem; margin: 5rem auto 2rem; }
-  h1 { font-size: 3rem; }
-  h2 { font-size: 2.25rem; }
+/* ================== LIGHTBOX ================== */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+  align-items: center;
 }
 
-@media (max-width: 768px) {
-  .glass-container { margin: 4rem 1rem 2rem; padding: 2rem 1.5rem; }
-  h1 { font-size: 2.5rem; }
-  h2 { font-size: 1.9rem; }
+.lightbox img,
+.lightbox video {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
-@media (max-width: 480px) {
-  .glass-container { margin: 3rem 0.5rem 2rem; padding: 1.5rem 1rem; }
-  h1 { font-size: 2rem; }
-  h2 { font-size: 1.5rem; }
-  .gallery { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+.lightbox .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  user-select: none;
 }
 
 /* ================== ACCESSIBILITY ================== */
@@ -353,103 +388,8 @@ input:focus {
 
 /* Center all header text on the homepage */
 .glass-container header {
-    text-align: center; /* horizontal centering */
+    text-align: center;
     display: flex;
-    flex-direction: column; /* stack heading and paragraph vertically */
-    align-items: center;    /* horizontally center flex items */
-}
-
-/* ================================
-   Lightbox for gallery media
-   ================================ */
-.lightbox {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.85);
-  justify-content: center;
-  align-items: center;
-}
-
-.lightbox img,
-.lightbox video {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-}
-
-.lightbox .close-btn {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 2rem;
-  font-weight: bold;
-  color: white;
-  cursor: pointer;
-  user-select: none;
-}
-
-/* ================== Responsive Iframes in Gallery ================== */
-.gallery-item iframe {
-  width: 100%;          /* full width of the gallery item */
-  height: auto;         /* height adjusts automatically */
-  aspect-ratio: 16/9;   /* maintain 16:9 ratio */
-  border-radius: 8px;   /* match other media */
-  object-fit: cover;    /* crop if necessary, keeps it neat */
-}
-
-/* ================== Fix gallery layout for videos/iframes ================== */
-.gallery-item iframe,
-.gallery-item video {
-  width: 100%;           /* fill the gallery item width */
-  max-width: 100%;       /* prevent overflow */
-  aspect-ratio: 16/9;    /* consistent video ratio */
-  border-radius: 8px;    /* match image styling */
-  object-fit: cover;     /* keep content nicely scaled */
-  display: block;        /* remove inline spacing issues */
-  margin: 0 auto;        /* center in gallery block */
-}
-
-.gallery-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  background: rgba(255,255,255,0.1);
-  padding: 10px;
-  border-radius: 12px;
-  min-width: 200px;      /* optional: prevent items from shrinking too much */
-}
-
-/* ================== Gallery 2-items-per-row layout ================== */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* always 2 items per row */
-  gap: 20px;                             /* spacing between items */
-}
-
-.gallery-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 10px;
-  border-radius: 12px;
-}
-
-.gallery-item img,
-.gallery-item iframe,
-.gallery-item video {
-  width: 100%;
-  max-width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  border-radius: 8px;
-  display: block;
-}
+    flex-direction: column;
+    align-items: center;
+}}
