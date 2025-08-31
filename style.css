@@ -393,3 +393,17 @@ input:focus {
   cursor: pointer;
   user-select: none;
 }
+
+/* Fix for iframes inside gallery */
+.gallery-item iframe {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item iframe:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
