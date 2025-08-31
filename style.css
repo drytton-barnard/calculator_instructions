@@ -393,3 +393,22 @@ input:focus {
     flex-direction: column;
     align-items: center;
 }
+
+/* ================== Full-width, centered video fix ================== */
+.video-container,
+.gallery-item video,
+.gallery-item iframe {
+  width: 100%;            /* fill the container width */
+  max-width: 100%;        /* prevent overflow */
+  aspect-ratio: 16/9;     /* maintain correct video ratio */
+  display: block;         /* remove inline spacing issues */
+  margin: 0 auto;         /* center horizontally */
+  object-fit: cover;      /* fill nicely without distortion */
+  border-radius: 8px;     /* optional, matches styling */
+}
+
+/* Optional: for text below the video */
+.video-container p {
+  text-align: center;
+  margin-top: 0.5rem;
+}
