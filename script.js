@@ -209,3 +209,13 @@ function handleUpload() {
   document.getElementById("uploadImage").value = "";
   document.getElementById("uploadVideo").value = "";
 }
+
+function openFullscreen(img) {
+  if (img.requestFullscreen) {
+    img.requestFullscreen();
+  } else if (img.webkitRequestFullscreen) { /* Safari */
+    img.webkitRequestFullscreen();
+  } else if (img.msRequestFullscreen) { /* IE11 */
+    img.msRequestFullscreen();
+  }
+}
